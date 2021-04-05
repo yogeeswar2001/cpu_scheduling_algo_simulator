@@ -4,6 +4,8 @@
 	sim
 </title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
 var count=1;
 var input = [];
@@ -51,10 +53,28 @@ function submit() {
 			//console.log( "yogi",t[0].value );
 			temp.push(t[0].value);
 		}
-		console.log("temp arr",temp);
-	input.push(temp);
+		//console.log("temp arr",temp);
+	input.push(Object.assign({},temp));
 	}
-	console.log(input);
+	//console.log(input);
+
+	var json_inp = JSON.stringify(input);
+	//console.log(json_inp);
+
+	var datatosend = 'input='+json_inp;
+	$.ajax({
+		type: "POST",
+		url: "algo_sim.php",
+		async:true,
+		data: datatosend,
+		success: function(output) {
+			console.log(output);
+			return true;
+		},
+		complete: function() {
+			console.log("completed");
+		},
+	});
 }
 </script>
 
