@@ -128,9 +128,10 @@ void rr::calculate() {
 void ps::get_input(char** argv) {
         n = atoi(argv[2]);
 
-        for(int j=3,i=0;i<n;i++,j+=2 ) {
+        for(int j=3,i=0;i<n;i++,j+=3 ) {
                 pid = atoi(argv[j]);
-		btime = atoi(argv[j+1]); 
+		btime = atoi(argv[j+1]);
+	       	p = atoi(argv[j+2]);	
                 vec.push_back(make_pair(make_pair(pid,btime),p));
         }
         //sorting

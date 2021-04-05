@@ -50,25 +50,30 @@ function submit() {
 		temp.push(table.rows[i].cells[0].innerHTML);
 		for( j=1;j<c;j++ ) {
 			let t = table.rows[i].cells[j].getElementsByTagName("input");
-			//console.log( "yogi",t[0].value );
 			temp.push(t[0].value);
 		}
-		//console.log("temp arr",temp);
 	input.push(Object.assign({},temp));
 	}
-	//console.log(input);
 
 	var json_inp = JSON.stringify(input);
-	//console.log(json_inp);
 
-	var datatosend = 'input='+json_inp;
+	let qtime = document.getElementById("qtime");
+	let datatosend = 'input='+json_inp;
+	let urltosend = "algo_sim.php?num_proc="+count;
+
+	console.log(qtime);
+	if( JSON.stringify(qtime) != "null" ) {
+		urltosend += "&qtime="+qtime.value;
+	}
+
 	$.ajax({
 		type: "POST",
-		url: "algo_sim.php",
+		url: urltosend,
 		async:true,
 		data: datatosend,
-		success: function(output) {
-			console.log(output);
+		success: function(output_var) {
+			console.log(output_var);
+			document.getElementById("output").innerHTML = output_var;
 			return true;
 		},
 		complete: function() {
@@ -107,9 +112,9 @@ echo "<br><br>";
 echo "<table id=\"input_tab\">";
 if ( $algo_num == 4 ) {
 	echo "<tr>
-		<th>process id</th>
-		<th>brust time</th>
-		<th>priority</th>
+		<th>PID</th>
+		<th>BURST TIME</th>
+		<th>PRIORITY</th>
 		</tr>
 		<tr>
 		<td>1</td>
@@ -119,8 +124,8 @@ if ( $algo_num == 4 ) {
 }
 else { 
 	echo "<tr>
-		<th>process id</th>
-		<th>brust time</th>
+		<th>PID</th>
+		<th>BURST TIME</th>
 		</tr>
 		<tr>
 		<td>1</td>
@@ -129,9 +134,14 @@ else {
 }
 echo "</table><br><br>";
 
+if ( $algo_num == 3 ) {
+	echo "QUANTUM TIME: <input type=\"text\" id=\"qtime\"><br><br>";
+}
+
 echo "<button onclick=\"add_row()\">+</button><br>";
 echo "<button onclick=\"rem_row()\">-</button><br>";
 echo "<button onclick=\"submit()\">submit</button><br>";
+echo "<br><br><div id=\"output\"/>";
 ?>
 
 </body>
