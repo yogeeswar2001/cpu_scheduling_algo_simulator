@@ -107,7 +107,16 @@ $algo_num = $_GET["algo_num"];
 
 $_SESSION["algo_num"] = $algo_num;
 
-echo "<br><br>";
+$algo_name;
+if ( $algo_num == 1)
+	$algo_name = "FIRST COME FIRST SERVE";
+else if( $algo_num == 2)
+	$algo_name = "SHORTEST JOB FIRST";
+else if ( $algo_num == 3)
+	$algo_name = "ROUND ROBIN";
+else
+	$algo_name = "PRIORITY SCHEDULING";
+echo "<h2 style=\"text-align:center\">".$algo_name."</h2><br>";
 
 echo "<table id=\"input_tab\">";
 if ( $algo_num == 4 ) {

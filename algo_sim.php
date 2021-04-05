@@ -40,7 +40,34 @@ for ( $i=0;$i<$num_proc;$i++ ) {
 	echo "<tr>".$str."</tr>";
 }
 echo "</table>";
-echo "<h3>AVERAGE WAITING TIME: ".$output[$num_proc]."<br>AVERAGE TURN-AROUND TIME: ".$output[$num_proc+1]."</h3>";
-echo "<h3>GANTT CHART<br>".$output[$num_proc+2]."<br>".$output[$num_proc+3]."</h3>";
+echo "<h4>AVERAGE WAITING TIME: ".$output[$num_proc]."<br>AVERAGE TURN-AROUND TIME: ".$output[$num_proc+1]."</h4>";
+echo "<h4>GANTT CHART<br></h4>";
+
+echo "<table id=\"gantt_chart\">";
+$temp = explode(" ",$output[$num_proc+2]);
+$time = array_slice(explode(" ",$output[$num_proc+3]),1);
+$str="";
+
+$i=0;
+$px=20;
+foreach ($temp as $result) {
+	if( $i == 0)
+		$str = $str."<th style=\"width:".(int)$time[$i]*$px."px\">P".$result."</th>";
+	else 
+		$str = $str."<th style=\"width:".((int)$time[$i]-(int)$time[$i-1])*$px."px\">P".$result."</th>";
+	$i++;
+}
+echo "<tr>".$str."</tr>";
+
+$str="";
+$i=0;
+foreach ($time as $result) {
+	if( $i == 0 ) 
+		$str = $str."<td><div style=\"float:left;\">0</div><div style=\"float:right;\">".$result."</div></td>";
+	else
+		$str = $str."<td><div style=\"float:right\">".$result."</div></td>";
+	$i++;
+}
+echo "<tr>".$str."</tr></table>";
 
 ?>
