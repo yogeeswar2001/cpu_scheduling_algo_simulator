@@ -26,7 +26,8 @@ else {
 
 exec('./target/simulator '.$input, $output, $return_stat);
 
-echo "<table id=\"output_tab\">
+$html_ouput;
+$html_output = "<table id=\"output_tab\">
 	<tr>
 	<th>PID</th><th>BURST TIME</th><th>WAITING TIME</th><th>TURN-AROUND TIME</th>
 	</tr>";
@@ -37,13 +38,10 @@ for ( $i=0;$i<$num_proc;$i++ ) {
 	foreach ($temp as $result) {
 		$str = $str."<td>".$result."</td>";
 	}
-	echo "<tr>".$str."</tr>";
+	$html_output .= "<tr>".$str."</tr>";
 }
-echo "</table>";
-echo "<h4>AVERAGE WAITING TIME: ".$output[$num_proc]."<br>AVERAGE TURN-AROUND TIME: ".$output[$num_proc+1]."</h4>";
-echo "<h4>GANTT CHART<br></h4>";
+$html_output .= "</table><h4>AVERAGE WAITING TIME: ".$output[$num_proc]."<br>AVERAGE TURN-AROUND TIME: ".$output[$num_proc+1]."</h4><h4>GANTT CHART<br></h4><table id=\"gantt_chart\">";
 
-echo "<table id=\"gantt_chart\">";
 $temp = explode(" ",$output[$num_proc+2]);
 $time = array_slice(explode(" ",$output[$num_proc+3]),1);
 $str="";
@@ -57,7 +55,7 @@ foreach ($temp as $result) {
 		$str = $str."<th style=\"width:".((int)$time[$i]-(int)$time[$i-1])*$px."px\">P".$result."</th>";
 	$i++;
 }
-echo "<tr>".$str."</tr>";
+$html_output .= "<tr>".$str."</tr>";
 
 $str="";
 $i=0;
@@ -68,6 +66,7 @@ foreach ($time as $result) {
 		$str = $str."<td><div style=\"float:right\">".$result."</div></td>";
 	$i++;
 }
-echo "<tr>".$str."</tr></table>";
+$html_output .= "<tr>".$str."</tr></table>";
 
+echo $html_output;
 ?>
