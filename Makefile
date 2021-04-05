@@ -35,4 +35,4 @@ clean:
 	rm -r $(BUILDDIR)
 	rm -r $(TARGETDIR)
 
-recompile: clean all
+recompile: $(TARGET)

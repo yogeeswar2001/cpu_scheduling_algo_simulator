@@ -76,6 +76,10 @@ function submit() {
 		},
 	});
 }
+
+function display_output() {
+
+}
 </script>
 
 <style>
@@ -89,11 +93,15 @@ table,th,td {
 
 <body>
 <?php
+session_start();
+
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
 $algo_num = $_GET["algo_num"];
-#echo $algo_num;
+
+$_SESSION["algo_num"] = $algo_num;
+
 echo "<br><br>";
 
 echo "<table id=\"input_tab\">";
