@@ -15,7 +15,7 @@ class cpu_schedule {
 		std::pair<int,int> temp;
 		std::vector<std::pair<int,int>> chart;
 	public:
-        	virtual void get_input() = 0;
+        	virtual void get_input( char** ) = 0;
 
         	virtual void calculate() = 0;
 	
@@ -24,7 +24,7 @@ class cpu_schedule {
 
 class fcfs : public cpu_schedule {
 	public:
-		void get_input();
+		void get_input( char** );
 		void calculate();
 };
 
@@ -32,14 +32,14 @@ class sjf : public fcfs {
 	private:
 		std::vector<std::pair<int,int>> vec;
 	public:
-		void get_input();
+		void get_input( char** );
 };
 
 class rr : public cpu_schedule {
 	int qtime,bt[10];
 
 	public:
-		void get_input();
+		void get_input( char** );
 		void calculate();
 };
 
@@ -48,7 +48,7 @@ class ps : public fcfs {
 	        int p;
 		std::vector<std::pair<std::pair<int,int>,int>> vec;		
 	public:
-		void get_input();
+		void get_input( char** );
 };
 
 bool compare_sjf( std::pair<int,int> , std::pair<int,int> );

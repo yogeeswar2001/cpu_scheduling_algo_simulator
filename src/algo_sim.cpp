@@ -1,46 +1,35 @@
 #include<iostream>
+#include<cstdlib>
 #include "cpu_schedule.h"
 
 using namespace std;
 
-int main() {
-        int flag,x;
+int main(int argc, char *argv[]) {
+        int x;
         cpu_schedule *cpu;
 
-        flag = 1;
-        do {
-                cout<<"###################################################\n";
-                cout<<"enter any of the below options\n1. fcfs\n2. sfj\n3. rr\n4. ps\nenter your choice: ";
-                cin>>x;
+        x = atoi(argv[1]);
 
-                fcfs algo_fcfs;
-                sjf algo_sfj;
-                rr algo_rr;
-                ps algo_ps;
-                switch (x) {
-                        case 1:
-                                cpu = &algo_fcfs;
-                                break;
-                        case 2:
-                                cpu = &algo_sfj;
-                                break;
-                        case 3:
-                                cpu = &algo_rr;
-                                break;
-                        case 4:
-                                cpu = &algo_ps;
-                                break;
-                        default:
-                                cout<<"enter a valid number\n";
-                }
+        fcfs algo_fcfs;
+        sjf algo_sfj;
+        rr algo_rr;
+        ps algo_ps;
+        switch (x) {
+                case 1:
+                        cpu = &algo_fcfs;
+                        break;
+                case 2:
+                        cpu = &algo_sfj;
+                        break;
+                case 3:
+                        cpu = &algo_rr;
+                        break;
+                case 4:
+                        cpu = &algo_ps;
+                        break;
+        }
 
-                cpu->get_input();
-                cpu->calculate();
-                cpu->output();
-
-                cout<<"\n if u want to continue press 1, else 0: ";
-                cin>>flag;
-
-                cout<<"###################################################\n";
-        } while( flag );
+        cpu->get_input(argv);
+        cpu->calculate();
+        cpu->output();
 }
