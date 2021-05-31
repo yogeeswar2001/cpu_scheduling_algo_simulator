@@ -4,8 +4,8 @@
   ```
   sudo apt install openjdk-15-jdk
   ```
-- set up JavaFX: to install openfx on linux use [a link](https://gluonhq.com/products/javafx/)
-- Download jar file from [a releases](https://github.com/yogeeswar2001/cpu_scheduling_algo_simulator/releases)
+- set up JavaFX: to install openfx on linux use [link](https://gluonhq.com/products/javafx/)
+- Download jar file from [releases](https://github.com/yogeeswar2001/cpu_scheduling_algo_simulator/releases)
 - Run the following command from terminal
   ```
   java --module-path /[path-to-javafx-sdk]/javafx-sdk-11.0.2/lib/ --add-modules=javafx.base,javafx.controls,javafx.graphics -jar cpuschedule.jar  
