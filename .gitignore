@@ -3,3 +3,13 @@ input.php
 
 #ignore buffers
 buffer/
+
+#ignoring all files related to previous release
+*.php
+include/
+js/
+src/
+target/
+obj/
+Makefile
+index.html
