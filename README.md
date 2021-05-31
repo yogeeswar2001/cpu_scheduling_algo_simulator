@@ -1,52 +1,19 @@
 # cpu_scheduling_algo_simulator
-### Working
-This uses ajax for sending the input data to server, and the server processes the input data and passes it to executable as command line arguments, output of c++ program is processed by adding HTML tags to it and this is served back to the user. DOM elements are used to render the content
-### Compiling c++ code
-- Use makefile to compile c++ file
+### INSTALLATION
+- set up JDK: This is required to run the application, to install JDK on linux use 
   ```
-  make recomplie
+  sudo apt install openjdk-15-jdk
   ```
-- Note: c++ code is already compiled, object files are kept in obj directory and executable is placed in target directory
-### How to run the web-app
-##### Follow the below steps for apache server
-- Create the directory for your_domain and move to the directory
+- set up JavaFX: to install openfx on linux use [a link](https://gluonhq.com/products/javafx/)
+- Download jar file from [a releases](https://github.com/yogeeswar2001/cpu_scheduling_algo_simulator/releases)
+- Run the following command from terminal
   ```
-  sudo mkdir /var/www/your_domain
-  cd /var/www/your_domain
+  java --module-path /[path-to-javafx-sdk]/javafx-sdk-11.0.2/lib/ --add-modules=javafx.base,javafx.controls,javafx.graphics -jar cpuschedule.jar  
   ```
-- Clone the repo or download the files inside the current directory,To Clone the repo
-    ```
-    git clone "https://github.com/yogeeswar2001/cpu_scheduling_algo_simulator.git"
-    ```
-- Assign ownership of the directory with the $USER environment variable
-  ```
-  sudo chown -R $USER:$USER /var/www/your_domain
-  ```
-- open a new configuration file in Apache sites-available directory using preferred command-line editor
-  ```
-  sudo vim /etc/apache2/sites-available/your_domain.conf
-  ```
-- Paste in the following configuration
-  ```
-  <VirtualHost *:80>
-    ServerName your_domain
-    ServerAlias www.your_domain
-    ServerAdmin webmaster@localhost
-    DocumentRoot /var/www/your_domain
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-  </VirtualHost>
-  ```
-- Run the following commands to enable the web app
-  ```
-  sudo a2ensite your_domain
-  sudo a2dissite 000-default
-  ```
-  The below command should give "syntax OK" which ensures configuration file doesn’t contain syntax error, if so reload apache
-  ```
-  sudo apache2ctl configtest
-  ```
-  ```
-  sudo systemctl reload apache2
-  ```
-- Open the browser and type localhost in the url
+  replace [path-to-javafx-sdk] in the command to path to the javafx sdk downloaded.
+
+### SCREENSHOTS
+![screenshots](https://github.com/yogeeswar2001/cpu_scheduling_algo_simulator/blob/master/images/image1.png)
+![screenshots](https://github.com/yogeeswar2001/cpu_scheduling_algo_simulator/blob/master/images/image2.png)
+![screenshots](https://github.com/yogeeswar2001/cpu_scheduling_algo_simulator/blob/master/images/image3.png)
+![screenshots](https://github.com/yogeeswar2001/cpu_scheduling_algo_simulator/blob/master/images/image4.png)
